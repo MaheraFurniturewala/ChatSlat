@@ -1,0 +1,17 @@
+{
+  "name": "chat_app",
+  "version": "1.0.0",
+  "description": "An application I made while learning to use sockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "socket"
+  ],
+  "author": "Mahera Furniturewala",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
