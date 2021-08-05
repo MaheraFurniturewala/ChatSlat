@@ -4,7 +4,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 
 const publicPath = path.join(__dirname, '/../public');  //since the public folder will be the statics
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 let app = express();
 //we did not have this instance in our express app that is why we needed to create our own server so we could pass it in socket.io
 let server = http.createServer(app);
@@ -17,6 +17,30 @@ app.use(express.static(publicPath));
 //this socket(in the callback is the same that we have in the client side io method)
 io.on('connection',(socket) => {
     console.log("A new user just connected");
+    //for everybody (individually) that connects to the server(basically this will only be sent to the user whi just joined in)
+    socket.emit('newMessage',{
+        from:"Admin",
+        text:"Welcome to the chat app",
+        createdAt:new Date().getTime()
+    });
+
+    //everybody but the current user(basically to everyone except the user who just joined in)
+    socket.broadcast.emit('newMessage',{
+        from:"Admin",
+        text:"new user joined"
+    })
+
+    socket.on('createMessage',(message)=>{
+        console.log("createMessage",message);
+        io.emit('newMessage',{
+            from:"message.from",
+            text:message.text,
+            createdAt: new Date().getTime()
+        });
+
+    });
+
+
     socket.on('disconnect',() => {
         console.log("User was disconnected");
     });

@@ -10,20 +10,6 @@
     <p>Welcome to the chat app.</p>
     <!-- this script allows us to make connections to the backend -->
     <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript">
-    //io is a method or a function which we got from the library
-    //it is going to make a connection with the backend and request something from the backend and try to keep thar connection alive
-    //we are requesting something(connection) so we are going to get some stuff back(response) which we will store in the variable
-    let socket = io();
-    //now when it is connected what to do:
-    socket.on('connect',()=>{
-        //this will show when you inspect the page
-        console.log("Connected to server.");
-    });
-    //this will log when the server is up or down
-    socket.on('disconnect',()=>{
-        console.log("Disconnected from the server");
-    });
-    </script>
+    <script type="text/javascript" src="/js/index.js"></script>
 </body>
 </html>
