@@ -13,4 +13,14 @@
         
         socket.on('newMessage',function(message){
             console.log("New message",message);
-        })
+        });
+// when we emit there are actually 3 args:
+// 1)The event name
+// 2)The data 
+// 3)The callback when the server gets it
+        socket.emit('createMessage',{
+            from:'John',
+            text:'Hey!!!'
+        }, function(message){
+            console.log("Server Got it   ",message);
+        });

@@ -24,9 +24,10 @@ io.on('connection',(socket) => {
     //everybody but the current user(basically to everyone except the user who just joined in)
     socket.broadcast.emit('newMessage',generateMessage('Admin','new user joined'));
 
-    socket.on('createMessage',(message)=>{
+    socket.on('createMessage',(message,callback)=>{
         console.log("createMessage",message);
         io.emit('newMessage',generateMessage(message.from,message.text));
+        callback('This is the server!');
 
     });
 
@@ -40,3 +41,4 @@ io.on('connection',(socket) => {
 server.listen(port, ()=>{
     console.log(`Server is up on port ${port}`);
 });
+
