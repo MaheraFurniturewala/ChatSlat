@@ -4,19 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chat App</title>
 </head>
-<body>
-    <p>Welcome to the chat app.</p>
-    <form id="message-form" action=""> 
-        <input type="text" name="message" placeholder="message" >
-        <button id="submit-btn" type="submit">Submit</button>
+<body class = "centered-form">
+    <div class="centered-form__form">
+        <form action="/chat.html">
+        <div class="form-field"><h3>Join Chat</h3></div>
+        <div class="form-field">
+            <label>Display name</label>
+            <input type="text" name="name" autofocus>
+        </div>
+        <div class="form-field">
+            <label>Room Name</label>
+            <input type="text" name="room" autofocus>
+        </div>
+        <div class="form-field">
+            <button>Join</button>
+        </div>
     </form>
-
-    <button type="button" id="send-location">Send Location</button>
-
-    <!-- this script allows us to make connections to the backend -->
+    </div>
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript" src="/js/libs/moment.js"></script>
 </body>
 </html>
+<!-- <p>Welcome to the chat app.</p>
+<form id="message-form" action=""> 
+    <input type="text" name="message" placeholder="message" >
+    <button id="submit-btn" type="submit">Submit</button>
+</form>
+
+<button type="button" id="send-location">Send Location</button> -->
+
+
+<!-- this script allows us to make connections to the backend -->
