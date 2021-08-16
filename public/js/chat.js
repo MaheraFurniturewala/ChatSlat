@@ -1,5 +1,11 @@
 
         let socket = io();
+
+        function scrollToBottom(){
+            let messages = document.querySelector("#messages").lastElementChild;
+            messages.scrollIntoView();
+
+        }
         //now when it is connected what to do:
         socket.on('connect',function(){
             //this will show when you inspect the page
@@ -24,6 +30,7 @@
             div.innerHTML = html;
 
             document.querySelector('#messages').appendChild(div);
+            scrollToBottom();
             // const formattedTime = moment(message.createdAt).format('LT');
             // console.log("New message",message);
             // let li = document.createElement('li');
@@ -45,6 +52,7 @@
             div.innerHTML = html;
 
             document.querySelector('#messages').appendChild(div);
+            scrollToBottom();
             // let li = document.createElement('li');
             // let a = document.createElement('a');
             // li.innerText = `${message.from} ${formattedTime}: `;
