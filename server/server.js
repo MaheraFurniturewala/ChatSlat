@@ -2,7 +2,6 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
-
 const {generateMessage, generateLocationMessage} = require('./utils/message');
 const publicPath = path.join(__dirname, '/../public');  //since the public folder will be the statics
 const port = process.env.PORT || 8000;
