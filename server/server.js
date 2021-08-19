@@ -19,19 +19,21 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
     console.log("A new user just connected");
     //for everybody (individually) that connects to the server(basically this will only be sent to the user whi just joined in)
-    socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
 
-    //everybody but the current user(basically to everyone except the user who just joined in)
-    socket.broadcast.emit('newMessage', generateMessage('Admin', 'new user joined'));
 
     socket.on('join', (params, callback) => {
-        console.log(params);
+      
         if (!isRealString(params.name) || !isRealString(params.room)) {
             console.log("inside the error part");
             return callback('Name and room are required');
         }else{
             console.log("not entering the error part")
         }
+        socket.join(params.room);
+        socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
+
+        //everybody but the current user(basically to everyone except the user who just joined in)
+        socket.broadcast.emit('newMessage', generateMessage('Admin', 'new user joined'));
     })
 
     socket.on('createMessage', (message, callback) => {
