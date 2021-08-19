@@ -9,7 +9,18 @@
         //now when it is connected what to do:
         socket.on('connect',function(){
             //this will show when you inspect the page
-            console.log("Connected to server.");
+            let searchQuery = window.location.search.substring(1);
+            let params = JSON.parse('{"' + decodeURI(searchQuery).replace(/&/g, '","').replace(/\+/g, ' ').replace(/=/g,'":"') + '"}');
+            // console.log(params)
+            socket.emit('join',params, function(err) {
+               
+                if(err){
+                  alert(err);
+                  window.location.href = '/';
+                }else {
+                  console.log('No Error');
+                }
+              });
 
         });
         //this will log when the server is up or down
